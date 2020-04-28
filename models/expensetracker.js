@@ -40,7 +40,7 @@ module.exports = (dbPoolInstance) => {
   };
 
     let register = (enteredUserId, enteredPassword,callback) => {
-        let query = 'INSERT INTO users (user_id, password) VALUES ($1,$2)';
+        let query = 'INSERT INTO users (user_id, password) VALUES ($1,$2) RETURNING *';
         const values = [enteredUserId, enteredPassword];
         dbPoolInstance.query(query, values, (error, queryResult) => {
             if( error ){
@@ -49,8 +49,14 @@ module.exports = (dbPoolInstance) => {
                 callback(error, null);
 
                 }else{
+
+                    if(queryResult.rows.length > 0){
+                        callback(null, [queryResult.rows[0].id]);
+
+                    }else{
                   // response.redirect('/')
                     callback(null, null);
+                    }
                 }
         });
     };

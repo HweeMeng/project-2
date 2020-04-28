@@ -12,18 +12,10 @@ module.exports = (db) => {
 
     let indexControllerCallback = (request, response) => {
         response.render('home');
-//   var userTableId = request.cookies['userId'];
-//   db.tweets.getAll(userTableId, (error, allTweets) => {
-//   response.render('tweets/index', { tweeteds: allTweets });
-// });
     };
 
     let registerControllerCallback = (request, response) => {
         response.render('register');
-//   var userTableId = request.cookies['userId'];
-//   db.tweets.getAll(userTableId, (error, allTweets) => {
-//   response.render('tweets/index', { tweeteds: allTweets });
-// });
     };
 
     let registerFormControllerCallback = (request, response) => {
@@ -34,9 +26,9 @@ module.exports = (db) => {
         console.log('===============entered parsed password===============');
         console.log(enteredPassword);
         db.expensetracker.register(enteredUserId,enteredPassword,(error, registerUser) => {
+            response.cookie('userId', registerUser[0]);
             response.cookie('loggedin', true);
             response.redirect('/');
-        // response.render('/tweets/register', { registerUser });
       });
   };
   /**
