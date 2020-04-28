@@ -35,7 +35,7 @@ if( process.env.DATABASE_URL ){
   configs = {
     user: 'lekhweemeng',
     host: '127.0.0.1',
-    database: 'psqlpract',
+    database: 'expensetracker',
     port: 5432
   };
 }
@@ -62,9 +62,9 @@ pool.on('error', function (err) {
  */
 
 
-const allPokemonModelsFunction = require('./models/expensetracker');
+const allExpensetrackerModelsFunction = require('./models/expensetracker');
 
-const pokemonModelsObject = allPokemonModelsFunction( pool );
+const expensetrackerModelsObject = allExpensetrackerModelsFunction( pool );
 
 
 
@@ -95,5 +95,5 @@ module.exports = {
    */
 
   // users: userModelsObject,
-  pokemon: pokemonModelsObject
+  expensetracker: expensetrackerModelsObject
 };

@@ -39,7 +39,24 @@ module.exports = (dbPoolInstance) => {
     });
   };
 
+    let register = (enteredUserId, enteredPassword,callback) => {
+        let query = 'INSERT INTO users (user_id, password) VALUES ($1,$2)';
+        const values = [enteredUserId, enteredPassword];
+        dbPoolInstance.query(query, values, (error, queryResult) => {
+            if( error ){
+
+                // invoke callback function with results after query has executed
+                callback(error, null);
+
+                }else{
+                  // response.redirect('/')
+                    callback(null, null);
+                }
+        });
+    };
+
   return {
     getAll: getAll,
+    register: register,
   };
 };

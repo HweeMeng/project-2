@@ -2,5 +2,6 @@
 
 CREATE TABLE IF NOT EXISTS users(
 id SERIAL PRIMARY KEY,
-password TEXT,
-)
+user_id TEXT,
+password TEXT
+);

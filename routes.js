@@ -13,9 +13,12 @@ module.exports = (app, allModels) => {
    */
 
   // require the controller
-    const tweetsControllerCallbacks = require('./controllers/expensetracker')(allModels);
+    const expenseControllerCallbacks = require('./controllers/expensetracker')(allModels);
 
-    app.get('/', tweetsControllerCallbacks.index);
+    app.get('/', expenseControllerCallbacks.index);
   //app.get('/pokemons/:id', pokemons.getPokemon);
 
+    app.get('/register', expenseControllerCallbacks.register);
+
+    app.post('/register', expenseControllerCallbacks.registerForm);
 };
