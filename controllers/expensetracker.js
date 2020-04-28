@@ -2,10 +2,6 @@ const sha256 = require('js-sha256');
 
 const SALT = "Awesome";
 
-const redirectLoggedIn = function(){
-    window.location.replace("/")
-}
-
 module.exports = (db) => {
 
   /**
@@ -39,8 +35,7 @@ module.exports = (db) => {
         console.log(enteredPassword);
         db.expensetracker.register(enteredUserId,enteredPassword,(error, registerUser) => {
             response.cookie('loggedin', true);
-            response.send('Successfully registered');
-            setTimeout(redirectLoggedIn(),3000);
+            response.redirect('/');
         // response.render('/tweets/register', { registerUser });
       });
   };
