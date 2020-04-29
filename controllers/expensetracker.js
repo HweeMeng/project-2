@@ -68,6 +68,39 @@ module.exports = (db) => {
             }
         });
     };
+
+    let addPageControllerCallback = (request, response) => {
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        db.expensetracker.addPage(usersId,(error, user) => {
+            //user[0] is user's name
+            if(isLogged === 'true'){
+                console.log('********see here!!! ********')
+                console.log(user);
+                response.render('add',{name: user});
+            }else{
+                response.redirect('/');
+            }
+        });
+    };
+
+    let addControllerCallback = (request, response) => {
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        var amount = request.body.amount;
+        var expenseText = request.body.expense;
+        var expenseCat = request.body.category;
+        var expenseMode = request.body.mode;
+        db.expensetracker.add(usersId,amount,expenseText,(error, add) => {
+            if(isLogged === 'true'){
+                console.log('********see here!!! ********')
+                console.log(add);
+                response.send('you have successfully added the spending: ' + add[1] + ' of amount: ' + add[0]);
+            }else{
+                response.redirect('/');
+            }
+      });
+    };
   /**
    * ===========================================
    * Export controller functions as a module
@@ -78,7 +111,9 @@ module.exports = (db) => {
     register: registerControllerCallback,
     registerForm: registerFormControllerCallback,
     login: loginControllerCallback,
-    landing: landingControllerCallback
+    landing: landingControllerCallback,
+    addPage: addPageControllerCallback,
+    add: addControllerCallback
   };
 
 }
