@@ -95,7 +95,7 @@ module.exports = (db) => {
             if(isLogged === 'true'){
                 console.log('********see here!!! ********')
                 console.log(add);
-                response.send('you have successfully added the spending: ' + add[1] + ' of amount: ' + add[0]);
+                response.render('int', {name: add});
             }else{
                 response.redirect('/');
             }
