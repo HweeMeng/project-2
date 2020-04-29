@@ -101,6 +101,21 @@ module.exports = (db) => {
             }
       });
     };
+
+    let monthlyControllerCallback = (request, response) => {
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        db.expensetracker.monthly(usersId,(error, expense) => {
+            //user[0] is user's name
+            if(isLogged === 'true'){
+                console.log('********see here!!! ********')
+                console.log(expense);
+                response.render('monthly',{expense: expense});
+            }else{
+                response.redirect('/');
+            }
+        });
+    };
   /**
    * ===========================================
    * Export controller functions as a module
@@ -113,7 +128,8 @@ module.exports = (db) => {
     login: loginControllerCallback,
     landing: landingControllerCallback,
     addPage: addPageControllerCallback,
-    add: addControllerCallback
+    add: addControllerCallback,
+    monthly: monthlyControllerCallback
   };
 
 }

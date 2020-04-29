@@ -29,4 +29,6 @@ module.exports = (app, allModels) => {
     app.get('/add', expenseControllerCallbacks.addPage);
 
     app.post('/add', expenseControllerCallbacks.add);
+
+    app.get('/monthly', expenseControllerCallbacks.monthly);
 };
