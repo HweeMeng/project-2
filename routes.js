@@ -23,4 +23,6 @@ module.exports = (app, allModels) => {
     app.post('/register', expenseControllerCallbacks.registerForm);
 
     app.post('/login', expenseControllerCallbacks.login);
+
+    app.get('/landing', expenseControllerCallbacks.landing);
 };

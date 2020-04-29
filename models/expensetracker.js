@@ -55,8 +55,32 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let landing = (usersId, callback) => {
+        let query = 'SELECT user_id FROM users WHERE id = $1';
+        const values = [usersId];
+        dbPoolInstance.query(query, values, (error, queryResult) => {
+            if( error ){
+
+                // invoke callback function with results after query has executed
+                callback(error, null);
+
+                }else{
+
+                    if(queryResult.rows.length > 0){
+                        callback(null, [queryResult.rows[0]]);
+
+                    }else{
+                  // response.redirect('/')
+                    callback(null, null);
+                    console.log('You have entered the wrong user name!');
+                    }
+                }
+        });
+    };
+
   return {
     register: register,
-    login: login
+    login: login,
+    landing: landing,
   };
 };

@@ -46,11 +46,26 @@ module.exports = (db) => {
 
                 response.cookie('userId', userLogin[1]);
                 response.cookie('loggedin', true);
-                response.redirect('/home');
+                response.redirect('/landing');
 
                 }else{
                     response.send('please enter correct password')
                 }
+        });
+    };
+
+    let landingControllerCallback = (request, response) => {
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        db.expensetracker.landing(usersId,(error, user) => {
+            //user[0] is user's name
+            if(isLogged === 'true'){
+                console.log('********see here!!! ********')
+                console.log(user);
+                response.render('landing',{name: user});
+            }else{
+                response.redirect('/');
+            }
         });
     };
   /**
@@ -62,7 +77,8 @@ module.exports = (db) => {
     index: indexControllerCallback,
     register: registerControllerCallback,
     registerForm: registerFormControllerCallback,
-    login: loginControllerCallback
+    login: loginControllerCallback,
+    landing: landingControllerCallback
   };
 
 }
