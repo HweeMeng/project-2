@@ -14,10 +14,18 @@ class Monthly extends React.Component {
                     </p>
                 </li>
     });
-    console.log(expList);
-    // const userTweets = this.props.tweeteds.map(tweets => {
-    //     return <li>{tweets.tweet}</li>
-    // })
+    let all = 0;
+    let add = function(){
+        all + parseInt(this.props.expense[0].amount);
+    };
+    add();
+    console.log(all);
+    // const totalSpend = this.props.expense.forEach(totalSpend => {
+    //     console.log('in foreach');
+    //     console.log(all);
+    //     console.log(totalSpend.amount);
+    //     all + parseInt(totalSpend.amount);
+    // });
     return (
       <html>
         <head />
@@ -29,6 +37,9 @@ class Monthly extends React.Component {
                 <ol>
                     {expList}
                 </ol>
+            </div>
+            <div>
+                <p>total: {all}</p>
             </div>
         </body>
       </html>
