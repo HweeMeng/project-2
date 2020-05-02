@@ -146,12 +146,36 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let catPage = (usersId, callback) => {
+        let query = 'SELECT category.id, category.category, users.user_id AS name FROM category INNER JOIN users ON (users.id = category.users_id) WHERE users.id =$1';
+        const values = [usersId];
+        dbPoolInstance.query(query, values, (error, queryResult) => {
+            if( error ){
+
+                // invoke callback function with results after query has executed
+                callback(error, null);
+
+                }else{
+
+                    if(queryResult.rows.length > 0){
+                        callback(null, queryResult.rows);
+
+                    }else{
+                  // response.redirect('/')
+                    callback(null, null);
+                    console.log('You have entered the wrong user name!');
+                    }
+                }
+        });
+    };
+
   return {
     register: register,
     login: login,
     landing: landing,
     addPage: addPage,
     add: add,
-    monthly: monthly
+    monthly: monthly,
+    catPage: catPage
   };
 };

@@ -116,6 +116,21 @@ module.exports = (db) => {
             }
         });
     };
+
+    let newCatPageControllerCallback = (request, response) => {
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        db.expensetracker.catPage(usersId,(error, categories) => {
+            //user[0] is user's name
+            if(isLogged === 'true'){
+                    console.log('********see here!!! ********')
+                    console.log(categories);
+                    response.render('catpage',{category: categories});
+            }else{
+                    response.redirect('/');
+            }
+        });
+    };
   /**
    * ===========================================
    * Export controller functions as a module
@@ -129,13 +144,8 @@ module.exports = (db) => {
     landing: landingControllerCallback,
     addPage: addPageControllerCallback,
     add: addControllerCallback,
-    monthly: monthlyControllerCallback
+    monthly: monthlyControllerCallback,
+    newCatPage: newCatPageControllerCallback,
   };
 
 }
-
-    // app.get('/register', expenseControllerCallbacks.register);
-
-    // app.post('/register', expenseControllerCallbacks.registerForm);
-
-    // app.post('/login', expenseControllerCallbacks.login);

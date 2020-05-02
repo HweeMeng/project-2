@@ -31,4 +31,6 @@ module.exports = (app, allModels) => {
     app.post('/add', expenseControllerCallbacks.add);
 
     app.get('/monthly', expenseControllerCallbacks.monthly);
+
+    app.get('/newcat', expenseControllerCallbacks.newCatPage);
 };

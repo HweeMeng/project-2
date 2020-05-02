@@ -14,18 +14,11 @@ class Monthly extends React.Component {
                     </p>
                 </li>
     });
-    let all = 0;
-    let add = function(){
-        all + parseInt(this.props.expense[0].amount);
-    };
-    add();
-    console.log(all);
-    // const totalSpend = this.props.expense.forEach(totalSpend => {
-    //     console.log('in foreach');
-    //     console.log(all);
-    //     console.log(totalSpend.amount);
-    //     all + parseInt(totalSpend.amount);
-    // });
+
+    const total = this.props.expense.reduce((totalSum, currentValue) =>{
+        console.log(currentValue.amount)
+        return totalSum + parseInt(currentValue.amount)
+    },0)
     return (
       <html>
         <head />
@@ -39,7 +32,7 @@ class Monthly extends React.Component {
                 </ol>
             </div>
             <div>
-                <p>total: {all}</p>
+                <p>total: {total}</p>
             </div>
         </body>
       </html>

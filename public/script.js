@@ -1,9 +1,10 @@
 console.log('hello!')
 
-registerButton = document.getElementById('register');tolanding
-intAddButton = document,getElementById('addanother');
+registerButton = document.getElementById('register');
+intAddButton = document.getElementById('addanother');
 intLandingButton = document.getElementById('tolanding');
-
+landingAddButton = document.getElementById('addNewExp');
+landingMonthly = document.getElementById('monthlyBtn');
 
 const buttonClicked = function(){
     console.log('clicked!!');
@@ -20,6 +21,27 @@ const landingClicked = function(){
     window.location.replace("/landing")
 }
 
+const monthlyClicked = function(){
+    console.log('clicked!!');
+    window.location.replace("/monthly")
+}
+
+if(registerButton){
 registerButton.addEventListener('click',buttonClicked);
+}
+
+if(intAddButton){
 intAddButton.addEventListener('click', addClicked);
-intLandingButton.addEventListener('click', landingClicked)
+};
+
+if(intLandingButton){
+intLandingButton.addEventListener('click', landingClicked);
+}
+
+if(landingAddButton){
+landingAddButton.addEventListener('click', addClicked);
+};
+
+if(landingMonthly){
+landingMonthly.addEventListener('click', monthlyClicked);
+};
