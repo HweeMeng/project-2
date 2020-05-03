@@ -123,9 +123,9 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
-    let monthly = (usersId, callback) => {
-        let query = 'SELECT expenses.id, expenses.amount, expenses.spending, expenses.category_id, users.user_id AS name FROM expenses INNER JOIN users ON (users.id = expenses.users_id) WHERE users.id = $1';
-        const values = [usersId];
+    let monthly = (usersId, month, callback) => {
+        let query = 'SELECT expenses.id, expenses.amount, expenses.spending, expenses.category_id, users.user_id AS name FROM expenses INNER JOIN users ON (users.id = expenses.users_id) WHERE users.id = $1 AND expenses.month = $2';
+        const values = [usersId, month];
         dbPoolInstance.query(query, values, (error, queryResult) => {
             if( error ){
 
@@ -169,6 +169,28 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let cat = (usersId, newCatWord, callback) => {
+        let query = 'INSERT INTO category (users_id, category) VALUES ($1,$2) RETURNING *';
+        const values = [usersId, newCatWord];
+        dbPoolInstance.query(query, values, (error, queryResult) => {
+            if( error ){
+
+                // invoke callback function with results after query has executed
+                callback(error, null);
+
+                }else{
+
+                    if(queryResult.rows.length > 0){
+                        callback(null, [queryResult.rows[0].id]);
+
+                    }else{
+                  // response.redirect('/')
+                    callback(null, null);
+                    }
+                }
+        });
+    };
+
   return {
     register: register,
     login: login,
@@ -176,6 +198,7 @@ module.exports = (dbPoolInstance) => {
     addPage: addPage,
     add: add,
     monthly: monthly,
-    catPage: catPage
+    catPage: catPage,
+    cat: cat,
   };
 };

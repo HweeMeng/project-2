@@ -5,6 +5,7 @@ intAddButton = document.getElementById('addanother');
 intLandingButton = document.getElementById('tolanding');
 landingAddButton = document.getElementById('addNewExp');
 landingMonthly = document.getElementById('monthlyBtn');
+landingAddCat = document.getElementById('addNewCat');
 
 const buttonClicked = function(){
     console.log('clicked!!');
@@ -26,6 +27,11 @@ const monthlyClicked = function(){
     window.location.replace("/monthly")
 }
 
+const addNewCatClicked = function(){
+    console.log('clicked!!');
+    window.location.replace("/newcat")
+}
+
 if(registerButton){
 registerButton.addEventListener('click',buttonClicked);
 }
@@ -44,4 +50,8 @@ landingAddButton.addEventListener('click', addClicked);
 
 if(landingMonthly){
 landingMonthly.addEventListener('click', monthlyClicked);
+};
+
+if(landingAddCat){
+landingAddCat.addEventListener('click', addNewCatClicked);
 };

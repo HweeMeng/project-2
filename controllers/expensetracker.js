@@ -107,9 +107,11 @@ module.exports = (db) => {
     };
 
     let monthlyControllerCallback = (request, response) => {
+        var date = new Date();
+        var month = parseInt(date.getMonth()) + 1;
         var isLogged = request.cookies['loggedin'];
         var usersId = request.cookies['userId'];
-        db.expensetracker.monthly(usersId,(error, expense) => {
+        db.expensetracker.monthly(usersId,month,(error, expense) => {
             //user[0] is user's name
             if(isLogged === 'true'){
                 console.log('********see here!!! ********')
@@ -135,6 +137,22 @@ module.exports = (db) => {
             }
         });
     };
+
+    let newCatControllerCallback = (request, response) => {
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        var newCatWord = request.body.newCategory;
+        db.expensetracker.cat(usersId, newCatWord, (error, categories) => {
+            //user[0] is user's name
+            if(isLogged === 'true'){
+                    console.log('********see here!!! ********')
+                    console.log(categories);
+                    response.render('landing',{name: categories});
+            }else{
+                    response.redirect('/');
+            }
+        });
+    };
   /**
    * ===========================================
    * Export controller functions as a module
@@ -150,6 +168,7 @@ module.exports = (db) => {
     add: addControllerCallback,
     monthly: monthlyControllerCallback,
     newCatPage: newCatPageControllerCallback,
+    newCat: newCatControllerCallback
   };
 
 }
