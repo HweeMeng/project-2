@@ -2,9 +2,11 @@ var React = require('react');
 
 class Add extends React.Component {
   render() {
-    var name = this.props.name[0].user_id;
+    var name = this.props.name[0].name;
+    var catSelector = this.props.name.map(cats => {
+        return <option value={cats.id}> {cats.category}</option>
+    })
     console.log('info in jsx');
-    console.log(name);
     return (
       <html>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
@@ -26,8 +28,10 @@ class Add extends React.Component {
                     <p>
                         Expense name: <input name="expense"/>
                     </p>
-                    <p>
-                        Expense Category: <input name="category"/>
+                    <p> Category:
+                        <select>
+                            {catSelector}
+                        </select>
                     </p>
                     <p>
                         Expense Mode: <input name="mode"/>

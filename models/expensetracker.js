@@ -79,7 +79,7 @@ module.exports = (dbPoolInstance) => {
     };
 
     let addPage = (usersId, callback) => {
-        let query = 'SELECT user_id FROM users WHERE id = $1';
+        let query = 'SELECT category.id, category.category, users.user_id AS name FROM category INNER JOIN users ON (users.id = category.users_id) WHERE users.id =$1';
         const values = [usersId];
         dbPoolInstance.query(query, values, (error, queryResult) => {
             if( error ){
@@ -90,7 +90,7 @@ module.exports = (dbPoolInstance) => {
                 }else{
 
                     if(queryResult.rows.length > 0){
-                        callback(null, [queryResult.rows[0]]);
+                        callback(null, queryResult.rows);
 
                     }else{
                   // response.redirect('/')
