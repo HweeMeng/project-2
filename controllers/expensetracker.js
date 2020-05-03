@@ -88,10 +88,12 @@ module.exports = (db) => {
         var isLogged = request.cookies['loggedin'];
         var usersId = request.cookies['userId'];
         var amount = request.body.amount;
+        var date = new Date();
+        var month = parseInt(date.getMonth()) + 1;
         var expenseText = request.body.expense;
         var expenseCat = request.body.selectedCat;
         var expenseMode = request.body.mode;
-        db.expensetracker.add(usersId,amount,expenseText,expenseCat,(error, add) => {
+        db.expensetracker.add(usersId,amount,expenseText,expenseCat,month,(error, add) => {
             if(isLogged === 'true'){
                 console.log('********see here!!! ********')
                 console.log(add);
