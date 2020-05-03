@@ -89,9 +89,9 @@ module.exports = (db) => {
         var usersId = request.cookies['userId'];
         var amount = request.body.amount;
         var expenseText = request.body.expense;
-        var expenseCat = request.body.category;
+        var expenseCat = request.body.selectedCat;
         var expenseMode = request.body.mode;
-        db.expensetracker.add(usersId,amount,expenseText,(error, add) => {
+        db.expensetracker.add(usersId,amount,expenseText,expenseCat,(error, add) => {
             if(isLogged === 'true'){
                 console.log('********see here!!! ********')
                 console.log(add);

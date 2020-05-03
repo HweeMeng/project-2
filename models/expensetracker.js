@@ -101,9 +101,9 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
-    let add = ( usersId, amount, expenseText, callback) => {
-        let query = 'INSERT INTO expenses (users_id, amount, spending) VALUES ($1,$2,$3) RETURNING *';
-        const values = [usersId, amount, expenseText];
+    let add = ( usersId, amount, expenseText, expenseCat, callback) => {
+        let query = 'INSERT INTO expenses (users_id, amount, spending, category_id) VALUES ($1,$2,$3,$4) RETURNING *';
+        const values = [usersId, amount, expenseText, expenseCat];
         dbPoolInstance.query(query, values, (error, queryResult) => {
             if( error ){
 

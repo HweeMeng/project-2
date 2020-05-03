@@ -29,7 +29,7 @@ class Add extends React.Component {
                         Expense name: <input name="expense"/>
                     </p>
                     <p> Category:
-                        <select>
+                        <select name = 'selectedCat'>
                             {catSelector}
                         </select>
                     </p>
