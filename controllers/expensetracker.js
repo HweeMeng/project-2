@@ -90,10 +90,12 @@ module.exports = (db) => {
         var amount = request.body.amount;
         var date = new Date();
         var month = parseInt(date.getMonth()) + 1;
+        var day = new Date();
+        var dayNum = parseInt(day.getDate());
         var expenseText = request.body.expense;
         var expenseCat = request.body.selectedCat;
         var expenseMode = request.body.mode;
-        db.expensetracker.add(usersId,amount,expenseText,expenseCat,month,(error, add) => {
+        db.expensetracker.add(usersId,amount,expenseText,expenseCat,month,dayNum,(error, add) => {
             if(isLogged === 'true'){
                 console.log('********see here!!! ********')
                 console.log(add);
