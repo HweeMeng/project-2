@@ -27,7 +27,8 @@ class Monthly extends React.Component {
         <body>
             <div className = "container text-center">
                 <div>
-                    <h1>Hi {userName}, below is your expenses for this month!:</h1>
+                    <h1>Hi {userName}</h1>
+                    <h3>below is your expenses for this month!:</h3>
                 </div>
                 <div>
                     <ol>

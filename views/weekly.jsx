@@ -27,7 +27,8 @@ class Weekly extends React.Component {
         <body>
             <div className = "container">
                 <div>
-                    <h1>Hi {userName}, below is your expenses for this week!:</h1>
+                    <h1>Hi {userName}</h1>
+                    <h3>below is your expenses for this week!:</h3>
                 </div>
                 <div>
                     <ol>
