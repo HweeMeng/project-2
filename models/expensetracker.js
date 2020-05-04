@@ -259,6 +259,29 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let lastmonth = (usersId, lastmonth, callback) => {
+        let query = 'SELECT expenses.id, expenses.amount, expenses.spending, expenses.category_id, users.user_id AS name FROM expenses INNER JOIN users ON (users.id = expenses.users_id) WHERE users.id = $1 AND EXTRACT(MONTH FROM date) = $2';
+        const values = [usersId, lastmonth];
+        dbPoolInstance.query(query, values, (error, queryResult) => {
+            if( error ){
+
+                // invoke callback function with results after query has executed
+                callback(error, null);
+
+                }else{
+
+                    if(queryResult.rows.length > 0){
+                        callback(null, queryResult.rows);
+
+                    }else{
+                  // response.redirect('/')
+                    callback(null, null);
+                    console.log('You have entered the wrong user name!');
+                    }
+                }
+        });
+    };
+
   return {
     register: register,
     login: login,
@@ -269,6 +292,7 @@ module.exports = (dbPoolInstance) => {
     catPage: catPage,
     cat: cat,
     weekly: weekly,
-    regCatPage:regCatPage
+    regCatPage:regCatPage,
+    lastmonth:lastmonth
   };
 };

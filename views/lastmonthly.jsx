@@ -1,6 +1,6 @@
 var React = require("react");
 
-class Monthly extends React.Component {
+class lastMonthly extends React.Component {
   render() {
     console.log('info are passed into jsx');
     const userName = this.props.expense[0].name;
@@ -27,7 +27,7 @@ class Monthly extends React.Component {
         <body>
             <div className = "container text-center">
                 <div>
-                    <h1>Hi {userName}, below is your expenses for this month!:</h1>
+                    <h1>Hi {userName}, below is your expenses for last month!:</h1>
                 </div>
                 <div>
                     <ol>
@@ -35,10 +35,10 @@ class Monthly extends React.Component {
                     </ol>
                 </div>
                 <div>
-                    <p>This month's total: {total}</p>
+                    <p>Last month's total: {total}</p>
                 </div>
                 <br></br>
-                <button type='button' className='btn btn-primary' id="lastMonthlyBtn">To This Month!</button>
+                <button type='button' className='btn btn-primary' id="monthlyBtn">This Month!</button>
                 <button type='button' className='btn btn-primary' id="tolanding">Back to landing page.</button>
             </div>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -51,4 +51,4 @@ class Monthly extends React.Component {
   }
 }
 
-module.exports = Monthly;
+module.exports = lastMonthly;
