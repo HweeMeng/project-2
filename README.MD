@@ -1,4 +1,5 @@
 the accessible site is at: https://murmuring-dusk-34398.herokuapp.com/
+the github repo: https://github.com/HweeMeng/project-2
 
 Welcome to Hwee Meng's expense tracker.
 This app allows the users to enter the amount which the users spent in order to know where is the largest spending the users incurred.
