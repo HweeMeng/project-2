@@ -15,14 +15,12 @@
 const pg = require('pg');
 const url = require('url');
 
-var configs;
-
 if( process.env.DATABASE_URL ){
 
   const params = url.parse(process.env.DATABASE_URL);
   const auth = params.auth.split(':');
 
-  configs = {
+  var configs = {
     user: auth[0],
     password: auth[1],
     host: params.hostname,
@@ -32,7 +30,7 @@ if( process.env.DATABASE_URL ){
   };
 
 }else{
-  configs = {
+  var configs = {
     user: 'lekhweemeng',
     host: '127.0.0.1',
     database: 'expensetracker',
