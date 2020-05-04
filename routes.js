@@ -35,4 +35,6 @@ module.exports = (app, allModels) => {
     app.get('/newcat', expenseControllerCallbacks.newCatPage);
 
     app.post('/newcat', expenseControllerCallbacks.newCat);
+
+    app.get('/weekly', expenseControllerCallbacks.weekly);
 };

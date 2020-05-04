@@ -29,6 +29,7 @@ module.exports = (db) => {
             response.cookie('userId', registerUser[0]);
             response.cookie('loggedin', true);
             response.redirect('/');
+
       });
     };
 
@@ -153,6 +154,27 @@ module.exports = (db) => {
             }
         });
     };
+
+    let weeklyControllerCallback = (request, response) => {
+        var date = new Date();
+        var startDate = date.getDate() - date.getDay();
+        var endDate = startDate + 6;
+        console.log('*******contorller dates**********')
+        console.log(startDate);
+        console.log(endDate);
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        db.expensetracker.weekly(usersId,startDate,endDate,(error, expense) => {
+            //user[0] is user's name
+            if(isLogged === 'true'){
+                console.log('********see here!!! ********')
+                console.log(expense);
+                response.render('weekly',{expense: expense});
+            }else{
+                response.redirect('/');
+            }
+        });
+    };
   /**
    * ===========================================
    * Export controller functions as a module
@@ -168,7 +190,8 @@ module.exports = (db) => {
     add: addControllerCallback,
     monthly: monthlyControllerCallback,
     newCatPage: newCatPageControllerCallback,
-    newCat: newCatControllerCallback
+    newCat: newCatControllerCallback,
+    weekly: weeklyControllerCallback
   };
 
 }
