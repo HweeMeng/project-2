@@ -39,7 +39,7 @@ class Monthly extends React.Component {
                     <p>This month's total: {total}</p>
                 </div>
                 <br></br>
-                <button type='button' className='btn btn-primary' id="lastMonthlyBtn">To This Month!</button>
+                <button type='button' className='btn btn-primary' id="lastMonthlyBtn">To Last Month!</button>
                 <button type='button' className='btn btn-primary' id="tolanding">Back to landing page.</button>
             </div>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
