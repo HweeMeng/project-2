@@ -23,7 +23,7 @@ class Register extends React.Component {
                     <p>
                         Password: <input name="password"/>
                     </p>
-                    <input className='btn btn-primary' type="submit" value="Login!"></input>
+                    <input className='btn btn-primary' type="submit" value="Register!"></input>
                 </form>
             </div>
             <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
