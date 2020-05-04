@@ -27,7 +27,7 @@ class Weekly extends React.Component {
         <body>
             <div className = "container">
                 <div>
-                    <h1>Hi {userName}, below is your expense!:</h1>
+                    <h1>Hi {userName}, below is your expenses for this week!:</h1>
                 </div>
                 <div>
                     <ol>
@@ -37,6 +37,7 @@ class Weekly extends React.Component {
                 <div>
                     <p>This week's total: {total}</p>
                 </div>
+                <button type='button' className='btn btn-primary' id="tolanding">Back to landing page.</button>
             </div>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

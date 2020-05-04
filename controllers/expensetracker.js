@@ -2,6 +2,8 @@ const sha256 = require('js-sha256');
 
 const SALT = "Awesome";
 
+
+
 module.exports = (db) => {
 
   /**
@@ -11,7 +13,11 @@ module.exports = (db) => {
    */
 
     let indexControllerCallback = (request, response) => {
+        if (request.cookies['userId']){
+            response.redirect('/landing');
+        }else{
         response.render('home');
+        }
     };
 
     let registerControllerCallback = (request, response) => {
@@ -21,6 +27,7 @@ module.exports = (db) => {
     let registerFormControllerCallback = (request, response) => {
         let enteredUserId = request.body.userId;
         let enteredPassword = sha256(request.body.password);
+        var userId;
         console.log('===============entered user name===============');
         console.log(enteredUserId);
         console.log('===============entered parsed password===============');
@@ -28,9 +35,8 @@ module.exports = (db) => {
         db.expensetracker.register(enteredUserId,enteredPassword,(error, registerUser) => {
             response.cookie('userId', registerUser[0]);
             response.cookie('loggedin', true);
-            response.redirect('/');
-
-      });
+            response.redirect('/regcat');
+        });
     };
 
     let loginControllerCallback = (request, response) => {
@@ -175,6 +181,21 @@ module.exports = (db) => {
             }
         });
     };
+
+    let regCatPageControllerCallback = (request, response) => {
+        var isLogged = request.cookies['loggedin'];
+        var usersId = request.cookies['userId'];
+        db.expensetracker.regCatPage(usersId,(error, categories) => {
+            //user[0] is user's name
+            if(isLogged === 'true'){
+                    console.log('********see here!!! ********')
+                    console.log(categories);
+                    response.render('blankcats',{category: categories});
+            }else{
+                    response.redirect('/');
+            }
+        });
+    };
   /**
    * ===========================================
    * Export controller functions as a module
@@ -191,7 +212,8 @@ module.exports = (db) => {
     monthly: monthlyControllerCallback,
     newCatPage: newCatPageControllerCallback,
     newCat: newCatControllerCallback,
-    weekly: weeklyControllerCallback
+    weekly: weeklyControllerCallback,
+    regcatPage: regCatPageControllerCallback
   };
 
 }

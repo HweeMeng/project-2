@@ -214,6 +214,51 @@ module.exports = (dbPoolInstance) => {
         });
     };
 
+    let regCatPage = (usersId, callback) => {
+        let query = 'SELECT user_id AS name FROM users WHERE users.id =$1';
+        const values = [usersId];
+        dbPoolInstance.query(query, values, (error, queryResult) => {
+            if( error ){
+
+                // invoke callback function with results after query has executed
+                callback(error, null);
+
+                }else{
+
+                    if(queryResult.rows.length > 0){
+                        callback(null, queryResult.rows);
+
+                    }else{
+                  // response.redirect('/')
+                    callback(null, null);
+                    console.log('You have entered the wrong user name!');
+                    }
+                }
+        });
+    };
+
+    let regCat = (userId, callback) => {
+        let query = 'INSERT INTO category (users_id, category) VALUES ($1,Food) RETURNING *';
+        const values = [userId];
+        dbPoolInstance.query(query, values, (error, queryResult) => {
+            if( error ){
+
+                // invoke callback function with results after query has executed
+                callback(error, null);
+
+                }else{
+
+                    if(queryResult.rows.length > 0){
+                        callback(null, [queryResult.rows[0].id]);
+
+                    }else{
+                  // response.redirect('/')
+                    callback(null, null);
+                    }
+                }
+        });
+    };
+
   return {
     register: register,
     login: login,
@@ -223,6 +268,7 @@ module.exports = (dbPoolInstance) => {
     monthly: monthly,
     catPage: catPage,
     cat: cat,
-    weekly: weekly
+    weekly: weekly,
+    regCatPage:regCatPage
   };
 };

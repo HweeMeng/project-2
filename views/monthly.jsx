@@ -25,9 +25,9 @@ class Monthly extends React.Component {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
         <link rel="stylesheet" type="text/css" href="style.css"/>
         <body>
-            <div className = "container">
+            <div className = "container text-center">
                 <div>
-                    <h1>Hi {userName}, below is your expense!:</h1>
+                    <h1>Hi {userName}, below is your expenses for this month!:</h1>
                 </div>
                 <div>
                     <ol>
@@ -35,8 +35,9 @@ class Monthly extends React.Component {
                     </ol>
                 </div>
                 <div>
-                    <p>total: {total}</p>
+                    <p>This month's total: {total}</p>
                 </div>
+                <button type='button' className='btn btn-primary' id="tolanding">Back to landing page.</button>
             </div>
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
