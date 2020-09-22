@@ -102,7 +102,7 @@ module.exports = (db) => {
         var expenseText = request.body.expense;
         var expenseCat = request.body.selectedCat;
         var expenseMode = request.body.mode;
-        db.expensetracker.add(usersId,amount,expenseText,expenseCat,month,dayNum,(error, add) => {
+        db.expensetracker.add(usersId,amount,expenseText,expenseCat,(error, add) => {
             if(isLogged === 'true'){
                 console.log('********see here!!! ********')
                 console.log(add);
